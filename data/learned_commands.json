@@ -1,0 +1,38 @@
+[
+  {
+    "instruction": "show active processes",
+    "normalized_instruction": "show active processes",
+    "shell": "powershell",
+    "commands": [
+      "Get-Process"
+    ],
+    "success_count": 8
+  },
+  {
+    "instruction": "list all active processes",
+    "normalized_instruction": "list all active processes",
+    "shell": "powershell",
+    "commands": [
+      "Get-Process"
+    ],
+    "success_count": 8
+  },
+  {
+    "instruction": "Create a folder with 10 files in it",
+    "normalized_instruction": "create a folder with 10 files in it",
+    "shell": "bash",
+    "commands": [
+      "mkdir -p \"with 10 files in it\""
+    ],
+    "success_count": 1
+  },
+  {
+    "instruction": "python main.py --terminal",
+    "normalized_instruction": "python main.py --terminal",
+    "shell": "bash",
+    "commands": [
+      "echo \"No rule matched: python main.py --terminal\""
+    ],
+    "success_count": 1
+  }
+]

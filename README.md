@@ -1,192 +1,216 @@
-# IOMP - Talk2Shell (Windows Edition)
-Talk2Shell is a locally executed system that translates natural language instructions into Windows CMD and PowerShell commands.
-It enables users to interact with their system using simple English instead of memorizing command-line syntax, while ensuring safe and controlled execution.
+# IOMP - Talk2Shell
 
+Talk2Shell is a local command assistant that turns natural language into system commands, checks them for safety, and can execute them in a controlled way.
 
+The current implementation has a launcher-first experience:
 
-# 🎯 Objectives
+- PowerShell is supported as the primary shell target.
+- Bash is supported for local development and non-Windows environments.
+- Terminal launcher is the default launch mode.
+- Web UI is available as an optional online mode.
+- Terminal mode executes by default unless dry-run is turned on.
+- Risky commands require confirmation or are blocked.
+- Risky and multi-step tasks can be queued for approval before execution.
+- Administrator relaunch is available on Windows from the launcher.
+- Native Windows terminal launch is available from VS Code with `--native-window`.
+- Optional AI translation is supported when `OPENAI_API_KEY` is set.
+- Windows launch scripts are included in `launch.cmd` and `launch.ps1`.
 
-- Eliminate the need to memorize PowerShell commands
-- Provide a natural language interface for system interaction
-- Ensure safe execution of commands on the local machine
-- Support multi-step task automation
+## What It Does
 
-  
-#🚀 Features
+- Translate short English instructions into shell commands.
+- Handle simple multi-step requests.
+- Flag destructive or sensitive commands before execution.
+- Show the generated command, safety analysis, and execution output in a browser UI.
 
- 🔄 Natural Language → Windows Command Translation
- 🛡️ Safety layer to detect potentially dangerous commands
- 🔁 Multi-step command generation
- ⚡ Local command execution on user's machine
+## Project Structure
 
- # 🧠 System Workflow
+```text
+IOMP/
+├── app/
+│   ├── core/
+│   │   ├── executor.py
+│   │   ├── models.py
+│   │   ├── safety.py
+│   │   ├── service.py
+│   │   └── translator.py
+│   ├── main.py
+│   └── web/
+│       ├── static/
+│       │   ├── app.js
+│       │   └── styles.css
+│       └── templates/
+│           └── index.html
+├── main.py
+├── requirements.txt
+└── tests/
+```
 
-1. User inputs a natural language instruction
-2. Input is preprocessed (lowercase, cleaned)
-3. Intent and entities are extracted
-4. PowerShell command(s) are generated
-5. Safety checks are applied
-6. Command is executed locally
-7. Output is displayed
- 
+## Architecture
 
-# 🏗️ System Architecture
+1. Input handler receives a natural-language instruction from the browser UI.
+2. Translator converts the instruction into one or more shell commands.
+3. Safety checker inspects the commands for destructive or sensitive patterns.
+4. Executor runs the command only when the request is allowed and execution is enabled.
+5. Output handler returns the translation, safety result, and execution output to the UI.
 
-Modules:
+When a task needs manual review, the backend creates an approval request with step-level detail instead of executing immediately.
 
-1. Input Handler
--Accept user input (CLI or UI)
-- Pass input to preprocessing module
+## Supported Examples
 
-  
-2. Preprocessor
- Responsibilities:
-- Convert text to lowercase
-- Remove extra spaces
-- Normalize keywords
+- `create a folder named reports`
+- `delete all txt files`
+- `list processes`
+- `create a folder named test and then list files`
+- `change directory to downloads`
+- `show system info`
+- `stop process notepad`
 
- Example:
- "Create A Folder Named Test"
- → "create a folder named test"
+## Automation Section
 
-3. Translator (NL → PowerShell)
- Responsibilities:
- - Convert natural language → PowerShell command
+Automation requests are handled separately from direct shell commands.
 
-Approach:
-1. Rule-based (initial)
-2. NLP/LLM (optional upgrade)
+- System setup automation covers tasks like installing Python, creating a virtual environment, and installing dependencies.
+- Browser automation covers tasks like opening WhatsApp Web and preparing a message workflow.
+- Browser automation plans now execute as a browser-launch preview with explicit manual follow-up steps when a full browser runner is not available.
+- The launcher shows automation as its own section so it stays distinct from normal command translation.
 
-Example mappings:
+## Installation
 
-"create folder X"
-→ New-Item -ItemType Directory -Name X
+1. Create or activate the Python environment for the repository.
+2. Install the dependencies:
 
-"delete all txt files"
-→ Remove-Item *.txt
+```bash
+pip install -r requirements.txt
+```
 
-"list processes"
-→ Get-Process
+3. Start the launcher:
 
-4. Safety Checker
-Responsibilities:
-- Detect dangerous commands
+```bash
+python main.py
+```
 
-Examples:
-- Remove-Item with -Recurse
-- System-critical paths
+4. Start terminal mode directly:
 
-Actions:
-- Block OR ask confirmation
+```bash
+python main.py --terminal
+```
 
-Example:
-⚠️ This command may delete multiple files. Continue? (Y/N)
+5. To start the web UI instead:
 
- 5.Command Executor
- Responsibilities:
- - Execute PowerShell commands locally
+```bash
+python main.py --web
+```
 
-Python Example:
-import subprocess
-subprocess.run(["powershell", "-Command", command])
+6. Open the browser at `http://127.0.0.1:8000` only when using `--web`.
 
+7. On Windows, double-click `launch.cmd` or run `launch.ps1` to open the native launcher.
 
-6. Output Handler
-Responsibilities:
-- Capture output
-- Display result to user
-- Handle errors gracefully
+## Launcher Flow
 
+When you start the app normally, you will see:
 
-# 🧩 Tech Stack
+1. Stay offline
+2. Go online
+3. Exit
 
-- Backend: Python / Node.js
-- NLP: Rule-based system / OpenAI API
-- Execution: subprocess (Python) / child_process (Node.js)
-- Platform: Windows (PowerShell)
+Inside offline mode, you can choose:
 
+1. Continue with terminal
+2. Continue as administrator
+3. Open a native Windows terminal
+4. Back
 
-# 📂 Project Structure
+Inside online mode, you can choose:
 
-Talk2Shell/
-│── backend/
-│   ├── translator.py
-│   ├── executor.py
-│   ├── safety.py
-│── main.py
-│── requirements.txt
-│── README.md
+1. Start web UI
+2. Open web view in browser
+3. Back
 
-## ⚙️ Installation
+## Terminal UX
 
-1. Clone the repository:
-   git clone https://github.com/your-username/Talk2Shell.git
+The terminal interface is designed to keep the user focused on natural language, not code:
 
-2. Navigate to the project:
-   cd Talk2Shell
+- It shows a short banner, current mode, and quick controls.
+- It summarizes the understood instruction in plain language.
+- It shows safety status as a simple pass/block/confirm result.
+- It shows execution status and output without exposing backend details by default.
+- A `:details on` command is available if you want deeper output while debugging.
 
-3. Install dependencies:
-   pip install -r requirements.txt
+## Usage
 
-4. Run the application:
-   python main.py
+The app defaults to dry-run mode, so it will show the generated commands without executing them.
 
-# ▶️ Usage
+If you want to run a command locally:
 
-Input:
-"create a folder named test"
+1. Turn off dry-run.
+2. Confirm risky commands if prompted.
+3. Make sure the selected shell exists on the current machine.
 
-Output:
-New-Item -ItemType Directory -Name test
+## Safety Model
 
+The safety layer blocks or flags commands that look destructive, such as:
 
-# 💡 Example Use Cases
+- recursive deletion
+- registry edits
+- system shutdown or disk tooling
+- commands that target sensitive system paths
 
-1. File Management
-Input: "delete all txt files"
-Output: Remove-Item *.txt
+The implementation intentionally prefers caution over execution.
 
-2. Process Management
-Input: "show running processes"
-Output: Get-Process
+## API Endpoints
 
-3. Multi-step Task
-Input: "create folder and move files"
-Output:
-New-Item -ItemType Directory -Name myFolder
-Move-Item *.txt myFolder
+- `POST /api/analyze` returns translation and safety results.
+- `POST /api/run` analyzes, checks safety, and optionally executes the command.
+- `GET /api/history` returns recent activity from the current process.
+- `POST /api/feedback` records successful instruction-to-command mappings.
+- `GET /api/learned` lists learned mappings, optionally by shell.
+- `GET /api/audit` returns recent audit events.
+- `GET /api/approvals` lists approval requests.
+- `GET /api/approvals/{id}` returns a single approval request.
+- `POST /api/approvals/{id}/approve` approves all or selected steps, optionally executing after approval.
+- `POST /api/approvals/{id}/deny` denies a queued request.
 
-#🛡️ Safety Considerations
+## AI Mode
 
-- Prevent execution of destructive commands
-- Require confirmation for risky operations
-- Avoid system-critical directories
+If you set `OPENAI_API_KEY`, the translator can use an LLM to map natural language into shell commands when rules do not match.
 
-  # 🧪 Limitations
+If no key is set, the rule-based translator and direct command passthrough still work.
 
-- Limited understanding of complex sentences
-- Rule-based system may not generalize well
-- Requires improvement for real-world robustness
+## Learning Loop
 
-  
-  
-# 🧠 How It Works
+The backend can learn from successful tasks:
 
-1. User inputs a natural language instruction
-2. System processes the input using predefined rules or NLP
-3. Generates corresponding PowerShell command(s)
-4. Performs safety checks
-5. Executes the command locally and returns output
+- Successful non-dry-run commands are recorded and reused for similar future instructions.
+- You can provide manual success feedback through the API.
+- Learned mappings are queryable through the API.
 
+## Execution Profiles
 
-# 📊 Future Scope
+The backend supports execution profiles to control automation strictness:
 
-- Add NLP model for better understanding
-- Voice input support
-- Command explanation feature
-- GUI interface
-- Context-aware execution
+- `safe` prioritizes manual approval.
+- `balanced` uses the default policy.
+- `power_user` reduces friction for trusted local workflows while still blocking dangerous commands.
 
+## Approval Queue
 
+Approval requests are persisted when a command or automation plan needs review.
 
- 
+- Each request stores the instruction, shell, profile, safety summary, commands, and step-by-step review state.
+- Multi-step plans expose individual steps so you can approve them incrementally.
+- Approved requests can be executed afterward through the API, or left as reviewed records.
+
+## Testing
+
+Run the test suite with:
+
+```bash
+pytest
+```
+
+## Notes
+
+- PowerShell is the default shell target.
+- Bash is included so the project remains usable on this Linux workspace.
+- The translator is rule-based and intentionally simple. It is designed as a solid starting point for a more advanced NLP layer later.
