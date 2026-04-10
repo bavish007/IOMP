@@ -2,9 +2,13 @@ from __future__ import annotations
 
 import argparse
 import sys
+<<<<<<< HEAD
 from dotenv import load_dotenv
 
 load_dotenv()
+=======
+
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
 import uvicorn
 
 from app.cli import run_cli, run_launcher

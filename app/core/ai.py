@@ -14,7 +14,10 @@ class AITranslation:
     description: str
     confidence: float
     notes: list[str]
+<<<<<<< HEAD
     chat_response: str
+=======
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
 
 
 def ai_is_available() -> bool:
@@ -31,6 +34,7 @@ def translate_with_ai(instruction: str, shell: ShellType) -> AITranslation | Non
     except Exception:
         return None
 
+<<<<<<< HEAD
     base_url = os.getenv("OPENAI_BASE_URL")
     client = OpenAI(api_key=api_key, base_url=base_url)
 
@@ -67,6 +71,26 @@ def translate_with_ai(instruction: str, shell: ShellType) -> AITranslation | Non
     except Exception as e:
         print(f"\n[bold red]FATAL AI ENGINE EXCEPTION:[/bold red] {e}")
         return None
+=======
+    client = OpenAI(api_key=api_key)
+    prompt = (
+        "You are a command translation engine. Convert the user instruction into shell commands. "
+        "Return JSON with keys: description, commands, confidence, notes. "
+        "Commands must be a list of strings for the requested shell only. "
+        f"Requested shell: {shell.value}. "
+        "Keep commands short, safe, and concrete."
+    )
+    response = client.responses.create(
+        model=os.getenv("OPENAI_MODEL", "gpt-4.1-mini"),
+        input=[
+            {"role": "system", "content": prompt},
+            {"role": "user", "content": instruction},
+        ],
+        temperature=0.1,
+    )
+
+    raw_text = getattr(response, "output_text", "") or ""
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
     if not raw_text:
         return None
 
@@ -81,6 +105,7 @@ def translate_with_ai(instruction: str, shell: ShellType) -> AITranslation | Non
     try:
         payload = json.loads(raw_text)
     except json.JSONDecodeError:
+<<<<<<< HEAD
         return AITranslation(
             description="Conversational fallback",
             commands=[],
@@ -88,6 +113,9 @@ def translate_with_ai(instruction: str, shell: ShellType) -> AITranslation | Non
             notes=[],
             chat_response=raw_text.strip(),
         )
+=======
+        return None
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
 
     commands = payload.get("commands") or []
     if not isinstance(commands, list):
@@ -98,5 +126,8 @@ def translate_with_ai(instruction: str, shell: ShellType) -> AITranslation | Non
         commands=[str(command) for command in commands if str(command).strip()],
         confidence=float(payload.get("confidence", 0.8)),
         notes=[str(note) for note in payload.get("notes", []) if str(note).strip()],
+<<<<<<< HEAD
         chat_response=str(payload.get("chat_response", "Yes, sir. I am executing the requested protocol immediately.")),
+=======
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
     )

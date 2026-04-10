@@ -8,9 +8,12 @@ from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+<<<<<<< HEAD
 from dotenv import load_dotenv
 
 load_dotenv()
+=======
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
 from pydantic import BaseModel, Field
 from starlette.requests import Request
 

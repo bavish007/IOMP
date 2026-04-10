@@ -22,7 +22,11 @@ def _resolve_shell(shell: ShellType) -> list[str] | None:
     return None
 
 
+<<<<<<< HEAD
 def execute_command(command: str, shell: ShellType, dry_run: bool = True, timeout_seconds: int = 120) -> ExecutionResult:
+=======
+def execute_command(command: str, shell: ShellType, dry_run: bool = True, timeout_seconds: int = 30) -> ExecutionResult:
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
     if dry_run:
         return ExecutionResult(
             executed=False,
@@ -48,6 +52,7 @@ def execute_command(command: str, shell: ShellType, dry_run: bool = True, timeou
             message=f"No executable shell found for {shell.value}.",
         )
 
+<<<<<<< HEAD
     try:
         completed = subprocess.run(
             shell_prefix + [command],
@@ -92,12 +97,40 @@ def execute_command(command: str, shell: ShellType, dry_run: bool = True, timeou
                 "return_code": return_code,
                 "stdout": stdout_str,
                 "stderr": stderr_str,
+=======
+    completed = subprocess.run(
+        shell_prefix + [command],
+        capture_output=True,
+        text=True,
+        timeout=timeout_seconds,
+        check=False,
+    )
+    return ExecutionResult(
+        executed=True,
+        return_code=completed.returncode,
+        stdout=completed.stdout.strip(),
+        stderr=completed.stderr.strip(),
+        command=command,
+        shell=shell,
+        dry_run=False,
+        message="Command executed successfully." if completed.returncode == 0 else "Command completed with errors.",
+        steps=[
+            {
+                "command": command,
+                "return_code": completed.returncode,
+                "stdout": completed.stdout.strip(),
+                "stderr": completed.stderr.strip(),
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
             }
         ],
     )
 
 
+<<<<<<< HEAD
 def execute_commands(commands: list[str], shell: ShellType, dry_run: bool = True, timeout_seconds: int = 120) -> ExecutionResult:
+=======
+def execute_commands(commands: list[str], shell: ShellType, dry_run: bool = True, timeout_seconds: int = 30) -> ExecutionResult:
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
     if not commands:
         return ExecutionResult(
             executed=False,

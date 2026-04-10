@@ -280,7 +280,11 @@ def translate_instruction(instruction: str, shell: ShellType) -> TranslationResu
 
     if ai_is_available():
         ai_translation = translate_with_ai(instruction, shell)
+<<<<<<< HEAD
         if ai_translation:
+=======
+        if ai_translation and ai_translation.commands:
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
             actions = [
                 CommandAction(
                     description=f"{ai_translation.description} {index + 1}" if len(ai_translation.commands) > 1 else ai_translation.description,
@@ -295,7 +299,10 @@ def translate_instruction(instruction: str, shell: ShellType) -> TranslationResu
                 actions=actions,
                 confidence=ai_translation.confidence,
                 notes=ai_translation.notes,
+<<<<<<< HEAD
                 chat_response=ai_translation.chat_response,
+=======
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
             )
 
     fragments = _split_intents(normalized)

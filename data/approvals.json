@@ -816,6 +816,7 @@
     "reason": "Browser Automation is ready for review.",
     "dry_run": true,
     "confirm_risky": false
+<<<<<<< HEAD
   },
   {
     "id": "4f1ef79d-639f-4bb4-a54b-f3b71dea4754",
@@ -930,5 +931,7 @@
     "reason": "System Setup Automation is ready for review.",
     "dry_run": true,
     "confirm_risky": false
+=======
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
   }
 ]

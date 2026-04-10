@@ -7,7 +7,10 @@ import shutil
 import subprocess
 import sys
 import textwrap
+<<<<<<< HEAD
 import time
+=======
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
 import webbrowser
 from dataclasses import dataclass
 
@@ -19,7 +22,10 @@ from rich.panel import Panel
 from rich.prompt import Prompt
 from rich.table import Table
 from rich.text import Text
+<<<<<<< HEAD
 from rich.live import Live
+=======
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
 
 from .core.models import ShellType, dataclass_to_dict
 from .core.service import CommandService
@@ -27,6 +33,7 @@ from .core.service import CommandService
 
 console = Console()
 
+<<<<<<< HEAD
 HEADER = "J.A.R.V.I.S. Kernel"
 SEPARATOR = "=" * 72
 
@@ -38,13 +45,23 @@ def animated_print(text: str, delay: float = 0.01) -> None:
     sys.stdout.write("\n")
     sys.stdout.flush()
 
+=======
+HEADER = "Talk2Shell Launcher"
+SEPARATOR = "=" * 72
+
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
 
 @dataclass(slots=True)
 class SessionConfig:
     shell: ShellType = ShellType.bash if os.name != "nt" else ShellType.powershell
     dry_run: bool = False
+<<<<<<< HEAD
     confirm_risky: bool = True
     mode: str = "autonomous"
+=======
+    confirm_risky: bool = False
+    mode: str = "standard"
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
 
 
 @dataclass(slots=True)
@@ -134,6 +151,7 @@ def _print_result(label: str, payload: dict[str, object], color_code: str = "36"
 
 
 def _render_banner() -> None:
+<<<<<<< HEAD
     jarvis_logo = [
         r"       _     _      ____   __     __  ___   ____  ",
         r"      | |   / \    |  _ \  \ \   / / |_ _| / ___| ",
@@ -165,6 +183,61 @@ def _render_quick_help() -> None:
 
 def _render_status_strip(config: SessionConfig, records: list[SessionRecord]) -> None:
     pass
+=======
+    banner = Panel.fit(
+        "[bold cyan]Talk2Shell[/bold cyan]\n[white]Terminal-first launcher with offline and online modes[/white]",
+        box=box.DOUBLE,
+        border_style="cyan",
+    )
+    console.print(banner)
+
+
+def _render_mode_table(config: SessionConfig) -> None:
+    table = Table.grid(padding=(0, 2))
+    table.add_column(justify="right", style="cyan")
+    table.add_column(style="white")
+    table.add_row("Shell", config.shell.value)
+    table.add_row("Dry run", "on" if config.dry_run else "off")
+    table.add_row("Confirm risky", "on" if config.confirm_risky else "off")
+    table.add_row("Mode", config.mode)
+    console.print(table)
+
+
+def _render_quick_help() -> None:
+    console.print(
+        Panel(
+            "[bold]Quick controls[/bold]\n"
+            "• Enter natural language to run a command\n"
+            "• :shell powershell|bash\n"
+            "• :dryrun on|off\n"
+            "• :confirm on|off\n"
+            "• :details on|off\n"
+            "• :history\n"
+            "• :back / :quit",
+            border_style="bright_blue",
+            title="Controls",
+        )
+    )
+
+
+def _render_status_strip(config: SessionConfig, records: list[SessionRecord]) -> None:
+    status_card = Panel(
+        f"[bold]Mode[/bold] {config.mode}\n[bold]Shell[/bold] {config.shell.value}\n[bold]Execution[/bold] {'live' if not config.dry_run else 'dry-run'}",
+        border_style="cyan",
+        title="Session",
+    )
+    safety_card = Panel(
+        f"[bold]Risk confirmation[/bold] {'on' if config.confirm_risky else 'off'}\n[bold]Recent commands[/bold] {len(records)}",
+        border_style="yellow",
+        title="Status",
+    )
+    instructions_card = Panel(
+        "Type a natural-language command and press Enter.\nUse `:help` for controls, `:history` for the last results.",
+        border_style="bright_black",
+        title="Usage",
+    )
+    console.print(Columns([status_card, safety_card, instructions_card], expand=True))
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
 
 
 def _render_history(records: list[SessionRecord]) -> None:
@@ -207,7 +280,24 @@ def _show_online_menu(host: str, port: int) -> None:
 
 
 def _show_offline_menu() -> SessionConfig:
+<<<<<<< HEAD
     pass
+=======
+    console.print(Panel.fit("[bold yellow]Stay offline[/bold yellow]", border_style="yellow"))
+    console.print("[cyan]1.[/cyan] Continue with terminal")
+    console.print("[cyan]2.[/cyan] Continue as administrator")
+    console.print("[cyan]3.[/cyan] Open a native Windows terminal")
+    console.print("[cyan]4.[/cyan] Back")
+
+    choice = Prompt.ask("Choose", choices=["1", "2", "3", "4"], default="1")
+    if choice == "2":
+        if _relaunch_as_admin():
+            raise SystemExit(0)
+    if choice == "3":
+        if _run_in_native_terminal(["--launcher", "--terminal"]):
+            raise SystemExit(0)
+    return SessionConfig()
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
 
 
 def _run_session(config: SessionConfig) -> None:
@@ -215,12 +305,24 @@ def _run_session(config: SessionConfig) -> None:
     show_details = False
     records: list[SessionRecord] = []
 
+<<<<<<< HEAD
     console.print("\n[bold cyan]J.A.R.V.I.S. Core Systems Interactive Mode[/bold cyan]")
     animated_print("[cyan]Awaiting absolute instructions.[/cyan]\n", 0.01)
 
     while True:
         try:
             raw = Prompt.ask("[bold white]You[/bold white]", default="").strip()
+=======
+    console.print(Panel.fit(f"[bold green]{HEADER}[/bold green]", border_style="green"))
+    _render_mode_table(config)
+    _render_quick_help()
+    _render_status_strip(config, records)
+    console.print(SEPARATOR)
+
+    while True:
+        try:
+            raw = Prompt.ask(f"[{config.shell.value} | {'dry-run' if config.dry_run else 'live'}]", default="").strip()
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
         except (EOFError, KeyboardInterrupt):
             console.print()
             break
@@ -291,9 +393,14 @@ def _run_session(config: SessionConfig) -> None:
             )
             continue
 
+<<<<<<< HEAD
         with console.status("[bold bright_black]Connecting to systems...[/bold bright_black]", spinner="dots"):
             analysis = service.analyze(raw, config.shell)
             workflow = service.run(raw, config.shell, confirm_risky=config.confirm_risky, dry_run=config.dry_run)
+=======
+        analysis = service.analyze(raw, config.shell)
+        workflow = service.run(raw, config.shell, confirm_risky=config.confirm_risky, dry_run=config.dry_run)
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
 
         action_count = len(analysis.translation.actions)
         status_text = "blocked" if analysis.safety.blocked else ("needs confirmation" if analysis.safety.requires_confirmation else "ready")
@@ -301,6 +408,7 @@ def _run_session(config: SessionConfig) -> None:
         records.insert(0, SessionRecord(instruction=raw, status=status_text, summary=summary_text, shell=config.shell.value))
         records[:] = records[:5]
 
+<<<<<<< HEAD
         pass
         if analysis.translation.chat_response:
             console.print("\n[bold cyan]J.A.R.V.I.S:[/bold cyan] ", end="")
@@ -355,5 +463,85 @@ def run_launcher(host: str = "127.0.0.1", port: int = 8000) -> None:
             animated_print("[dim]Terminating connection...[/dim]", 0.02)
             break
 
+=======
+        console.print(SEPARATOR)
+        _render_status_strip(config, records)
+        if analysis.automation is not None:
+            automation_lines = [
+                f"Category: {analysis.automation.category.value}",
+                f"Summary: {analysis.automation.summary}",
+                f"Browser required: {'Yes' if analysis.automation.requires_browser else 'No'}",
+                f"Admin required: {'Yes' if analysis.automation.requires_admin else 'No'}",
+            ]
+            if analysis.automation.notes:
+                automation_lines.append(f"Notes: {'; '.join(analysis.automation.notes)}")
+            console.print(Panel("\n".join(automation_lines), title="Automation", border_style="blue"))
+        console.print(Panel.fit(
+            f"[bold]Understood[/bold]\n{analysis.translation.original_text}\n\n"
+            f"[bold]Actions[/bold]\n{action_count} planned step{'s' if action_count != 1 else ''}\n\n"
+            f"[bold]Confidence[/bold] {round(analysis.translation.confidence * 100)}%",
+            border_style="cyan",
+            title="Natural Language",
+        ))
+        console.print(Panel.fit(
+            f"[bold]Safety[/bold]\n{analysis.safety.summary}\n\n"
+            f"[bold]Blocked[/bold] {'Yes' if analysis.safety.blocked else 'No'}\n"
+            f"[bold]Confirmation[/bold] {'Yes' if analysis.safety.requires_confirmation else 'No'}",
+            border_style="yellow",
+            title="Safety Check",
+        ))
+        if workflow.execution is None:
+            console.print(Panel("Execution skipped because the command was blocked or confirmation is required.", title="Execution", border_style="magenta"))
+        else:
+            execution_lines = [
+                f"Status: {'Executed' if workflow.execution.executed else 'Pending'}",
+                f"Message: {workflow.execution.message}",
+            ]
+            if workflow.execution.stdout:
+                execution_lines.append(f"Output:\n{workflow.execution.stdout}")
+            if workflow.execution.stderr:
+                execution_lines.append(f"Errors:\n{workflow.execution.stderr}")
+            console.print(Panel("\n\n".join(execution_lines), title="Execution", border_style="magenta"))
+
+        if show_details:
+            console.print(Panel.fit(
+                json.dumps(dataclass_to_dict(analysis), indent=2),
+                title="Details",
+                border_style="bright_black",
+            ))
+
+        console.print(Panel(
+            "[bold]What happened[/bold]\n"
+            f"{raw}\n\n"
+            f"[bold]Result[/bold] {summary_text}",
+            border_style="bright_black",
+            title="Summary",
+        ))
+        console.print(SEPARATOR)
+
+
+def run_launcher(host: str = "127.0.0.1", port: int = 8000) -> None:
+    while True:
+        _render_banner()
+        console.print("[cyan]1.[/cyan] Stay offline")
+        console.print("[cyan]2.[/cyan] Go online")
+        console.print("[cyan]3.[/cyan] Exit")
+
+        choice = Prompt.ask("Choose", choices=["1", "2", "3"], default="1")
+
+        if choice == "1":
+            config = _show_offline_menu()
+            _run_session(config)
+            continue
+
+        if choice == "2":
+            _show_online_menu(host, port)
+            continue
+
+        if choice == "3":
+            break
+
+
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
 def run_cli() -> None:
     _run_session(SessionConfig())

@@ -1,14 +1,41 @@
 [
   {
+<<<<<<< HEAD
     "instruction": "JARVIS, do I even have Python installed on this machine? Check it for me.",
     "normalized_instruction": "jarvis, do i even have python installed on this machine? check it for me.",
     "shell": "powershell",
     "commands": [
       "Write-Output \"No rule matched: jarvis, do i even have python installed on this machine? check it for me.\""
+=======
+    "instruction": "show active processes",
+    "normalized_instruction": "show active processes",
+    "shell": "powershell",
+    "commands": [
+      "Get-Process"
+    ],
+    "success_count": 8
+  },
+  {
+    "instruction": "list all active processes",
+    "normalized_instruction": "list all active processes",
+    "shell": "powershell",
+    "commands": [
+      "Get-Process"
+    ],
+    "success_count": 8
+  },
+  {
+    "instruction": "Create a folder with 10 files in it",
+    "normalized_instruction": "create a folder with 10 files in it",
+    "shell": "bash",
+    "commands": [
+      "mkdir -p \"with 10 files in it\""
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
     ],
     "success_count": 1
   },
   {
+<<<<<<< HEAD
     "instruction": "hi",
     "normalized_instruction": "hi",
     "shell": "powershell",
@@ -133,6 +160,13 @@
     "shell": "powershell",
     "commands": [
       "explorer.exe 'C:\\'"
+=======
+    "instruction": "python main.py --terminal",
+    "normalized_instruction": "python main.py --terminal",
+    "shell": "bash",
+    "commands": [
+      "echo \"No rule matched: python main.py --terminal\""
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
     ],
     "success_count": 1
   }

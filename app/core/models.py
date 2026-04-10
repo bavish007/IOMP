@@ -81,7 +81,10 @@ class TranslationResult:
     actions: list[CommandAction]
     confidence: float
     notes: list[str] = field(default_factory=list)
+<<<<<<< HEAD
     chat_response: str = ""
+=======
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
 
     def command_lines(self) -> list[str]:
         return [action.command_for(self.shell) for action in self.actions]

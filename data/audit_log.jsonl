@@ -66,6 +66,7 @@
 {"event_type": "analyze", "timestamp": "2026-04-09T17:26:03.155059+00:00", "payload": {"instruction": "open whatsapp and send a message to John saying hello", "shell": "powershell", "profile": "balanced", "source": "automation", "safe": false, "requires_confirmation": true, "blocked": false}}
 {"event_type": "approval_queue", "timestamp": "2026-04-09T17:26:03.156776+00:00", "payload": {"approval_id": "37dde9b4-564c-461c-ae1a-67f154407ac5", "instruction": "open whatsapp and send a message to John saying hello", "shell": "powershell", "profile": "balanced", "step_count": 3, "command_count": 1}}
 {"event_type": "run", "timestamp": "2026-04-09T17:26:03.156927+00:00", "payload": {"instruction": "open whatsapp and send a message to John saying hello", "shell": "powershell", "profile": "balanced", "status": "pending_confirmation", "approval_id": "37dde9b4-564c-461c-ae1a-67f154407ac5", "step_count": 3}}
+<<<<<<< HEAD
 {"event_type": "analyze", "timestamp": "2026-04-10T00:53:31.614084+00:00", "payload": {"instruction": "list processes", "shell": "powershell", "profile": "balanced", "source": "learned", "safe": true, "requires_confirmation": false, "blocked": false}}
 {"event_type": "analyze", "timestamp": "2026-04-10T00:53:31.626367+00:00", "payload": {"instruction": "show running processes", "shell": "bash", "profile": "balanced", "source": "rules", "safe": true, "requires_confirmation": false, "blocked": false}}
 {"event_type": "run", "timestamp": "2026-04-10T00:53:31.627150+00:00", "payload": {"instruction": "show running processes", "shell": "bash", "profile": "balanced", "status": "dry_run", "command_count": 1, "return_code": null}}
@@ -203,3 +204,5 @@
 {"event_type": "analyze", "timestamp": "2026-04-10T10:02:20.926259+00:00", "payload": {"instruction": "open instagram", "shell": "powershell", "profile": "balanced", "source": "automation", "safe": false, "requires_confirmation": true, "blocked": false}}
 {"event_type": "run", "timestamp": "2026-04-10T10:02:21.199275+00:00", "payload": {"instruction": "open instagram", "shell": "powershell", "profile": "balanced", "status": "executed", "command_count": 3, "return_code": 0, "automation_category": "browser_automation"}}
 {"event_type": "analyze", "timestamp": "2026-04-10T10:02:31.684386+00:00", "payload": {"instruction": "open youtube", "shell": "powershell", "profile": "balanced", "source": "automation", "safe": false, "requires_confirmation": true, "blocked": false}}
+=======
+>>>>>>> 05faf86e9b6137bc9bb72f8fb0ca83492ec97c07
