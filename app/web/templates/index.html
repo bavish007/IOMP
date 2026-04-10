@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>J.A.R.V.I.S. Artificial Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  
+  <div class="core-container">
+    <div class="reactor-core">
+      <img src="/static/jarvis_core.png" alt="JARVIS Core">
+    </div>
+    <div class="glow-sphere"></div>
+  </div>
+
+  <main class="hud-interface">
+    
+    <section class="left-panel glass-panel">
+      <div class="panel-header">
+        <h2 class="neon-text">SYSTEM.STATUS</h2>
+      </div>
+      <div class="status-strip" id="statusStrip">
+        <div class="status-tile">
+          <div class="status-label">Uplink Status</div>
+          <div class="status-value" id="aiStatus" style="color: var(--accent);">Checking...</div>
+        </div>
+        <div class="status-tile">
+          <div class="status-label">Neural Pathways</div>
+          <div class="status-value" id="learnedCount">0 Active</div>
+        </div>
+        <div class="status-tile">
+          <div class="status-label">Pending Executions</div>
+          <div class="status-value" id="pendingApprovalsCount" style="color: var(--warn);">0</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="center-stage">
+       <!-- This remains deliberately empty to let the core visual breathe, 
+            until input is injected below -->
+    </div>
+
+    <section class="right-panel glass-panel">
+      <div class="panel-header">
+        <h2 class="neon-text">EXECUTION.LOG</h2>
+      </div>
+      
+      <article class="hologram-card">
+        <div class="result-title">NATURAL_LANGUAGE_TRANSLATION</div>
+        <pre id="translationOutput">Awaiting user input sequence...</pre>
+      </article>
+
+      <article class="hologram-card">
+        <div class="result-title">SAFETY_OVERRIDE_CHECK</div>
+        <pre id="safetyOutput">Awaiting processing...</pre>
+      </article>
+
+      <article class="hologram-card">
+        <div class="result-title">RUNTIME_OUTPUT</div>
+        <pre id="executionOutput">Terminal output will stream here during physical execution.</pre>
+      </article>
+      
+      <!-- Hidden UI elements to keep javascript from throwing null reference errors while keeping UI spotless -->
+      <pre id="automationOutput" style="display:none;"></pre>
+      <pre id="stepsOutput" style="display:none;"></pre>
+      <div id="learnedList" style="display:none;"></div>
+      <div id="historyList" style="display:none;"></div>
+      <div id="approvalsList" style="display:none;"></div>
+      <button id="refreshLearned" style="display:none;"></button>
+      <button id="refreshHistory" style="display:none;"></button>
+      <button id="refreshApprovals" style="display:none;"></button>
+
+    </section>
+
+  </main>
+
+  <!-- Massive Centrally Floated Input Terminal -->
+  <div class="command-dock glass-panel">
+    <form id="commandForm" class="hud-form">
+      <div class="input-wrapper">
+        <span class="prompt-arrow">❯</span>
+        <input type="text" id="instruction" autocomplete="off" placeholder="Input command sequence or directory inquiry..." required>
+      </div>
+
+      <!-- Hidden shell toggles to maintain automatic PowerShell default without cluttering HUD -->
+      <select id="shell" style="display:none;"><option value="powershell" selected>PowerShell</option></select>
+      <input id="dryRun" type="checkbox" style="display:none;">
+      <input id="confirmRisky" type="checkbox" style="display:none;">
+
+      <div class="actions">
+        <button type="submit" class="cyber-btn analyze-btn">ANALYZE</button>
+        <button type="button" id="runButton" class="cyber-btn run-btn">EXECUTE</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="/static/app.js" type="module"></script>
+</body>
+</html>

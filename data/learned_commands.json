@@ -1,0 +1,139 @@
+[
+  {
+    "instruction": "JARVIS, do I even have Python installed on this machine? Check it for me.",
+    "normalized_instruction": "jarvis, do i even have python installed on this machine? check it for me.",
+    "shell": "powershell",
+    "commands": [
+      "Write-Output \"No rule matched: jarvis, do i even have python installed on this machine? check it for me.\""
+    ],
+    "success_count": 1
+  },
+  {
+    "instruction": "hi",
+    "normalized_instruction": "hi",
+    "shell": "powershell",
+    "commands": [
+      "Write-Output \"No rule matched: hi\""
+    ],
+    "success_count": 4
+  },
+  {
+    "instruction": "1",
+    "normalized_instruction": "1",
+    "shell": "powershell",
+    "commands": [
+      "Write-Output \"No rule matched: 1\""
+    ],
+    "success_count": 2
+  },
+  {
+    "instruction": "JARVIS, do I even have python installed.",
+    "normalized_instruction": "jarvis, do i even have python installed.",
+    "shell": "powershell",
+    "commands": [
+      "python --version"
+    ],
+    "success_count": 1
+  },
+  {
+    "instruction": "Which version of python do i have in my system",
+    "normalized_instruction": "which version of python do i have in my system",
+    "shell": "powershell",
+    "commands": [
+      "python --version"
+    ],
+    "success_count": 1
+  },
+  {
+    "instruction": "What is the latest version of python now?",
+    "normalized_instruction": "what is the latest version of python now?",
+    "shell": "powershell",
+    "commands": [
+      "(Invoke-WebRequest -Uri 'https://www.python.org/downloads/' -UseBasicParsing).Content"
+    ],
+    "success_count": 1
+  },
+  {
+    "instruction": "What is the time now?",
+    "normalized_instruction": "what is the time now?",
+    "shell": "powershell",
+    "commands": [
+      "Get-Date"
+    ],
+    "success_count": 1
+  },
+  {
+    "instruction": "hi'",
+    "normalized_instruction": "hi'",
+    "shell": "powershell",
+    "commands": [
+      "Write-Output \"No rule matched: hi\""
+    ],
+    "success_count": 1
+  },
+  {
+    "instruction": "Who is the ceo of open ai",
+    "normalized_instruction": "who is the ceo of open ai",
+    "shell": "powershell",
+    "commands": [
+      "Write-Output \"No rule matched: who is the ceo of open ai\""
+    ],
+    "success_count": 1
+  },
+  {
+    "instruction": "Who is the ceo of open ai?",
+    "normalized_instruction": "who is the ceo of open ai?",
+    "shell": "powershell",
+    "commands": [
+      "Write-Output \"No rule matched: who is the ceo of open ai\""
+    ],
+    "success_count": 1
+  },
+  {
+    "instruction": "JARVIS, open my C drive in the file explorer.",
+    "normalized_instruction": "jarvis, open my c drive in the file explorer.",
+    "shell": "powershell",
+    "commands": [
+      "explorer.exe 'C:\\'"
+    ],
+    "success_count": 1
+  },
+  {
+    "instruction": "JARVIS, open my Documents folder in the file explorer.",
+    "normalized_instruction": "jarvis, open my documents folder in the file explorer.",
+    "shell": "powershell",
+    "commands": [
+      "explorer.exe 'C:\\'"
+    ],
+    "success_count": 1
+  },
+  {
+    "instruction": "ARVIS, write a python script on my desktop called math_test.py that calculates the Fibonacci sequence up to 100, and then execute it for me.",
+    "normalized_instruction": "arvis, write a python script on my desktop called math_test.py that calculates the fibonacci sequence up to 100, and then execute it for me.",
+    "shell": "powershell",
+    "commands": [
+      "New-Item -Path \"$env:USERPROFILE\\Desktop\\math_test.py\" -ItemType File -Force",
+      "@'\n# Fibonacci sequence calculator\n\ndef fibonacci(n):\n    fib_sequence = [0, 1]\n    while len(fib_sequence) < n:\n        fib_sequence.append(fib_sequence[-1] + fib_sequence[-2])\n    return fib_sequence\n\nprint(fibonacci(100))\n'@ | Out-File -Encoding utf8 \"$env:USERPROFILE\\Desktop\\math_test.py\"",
+      "python \"$env:USERPROFILE\\Desktop\\math_test.py\""
+    ],
+    "success_count": 1
+  },
+  {
+    "instruction": "Who is the ceo of openai?",
+    "normalized_instruction": "who is the ceo of openai?",
+    "shell": "powershell",
+    "commands": [
+      "Write-Output \"No rule matched: who is the ceo of open ai\""
+    ],
+    "success_count": 1
+  },
+  {
+    "instruction": "Open documents folder in my explorer",
+    "normalized_instruction": "open documents folder in my explorer",
+    "shell": "powershell",
+    "commands": [
+      "explorer.exe 'C:\\'"
+    ],
+    "success_count": 1
+  }
+]

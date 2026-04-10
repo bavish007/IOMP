@@ -1,0 +1,274 @@
+:root {
+  color-scheme: dark;
+  --bg: #03080f;
+  --glass: rgba(10, 18, 30, 0.45);
+  --glass-strong: rgba(6, 11, 20, 0.75);
+  --border-neon: rgba(125, 211, 252, 0.35);
+  --text: #eef3ff;
+  --muted: #6481ae;
+  --accent: #7dd3fc;
+  --accent-glow: rgba(125, 211, 252, 0.6);
+  --warn: #f59e0b;
+  --danger: #f87171;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: var(--bg);
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--text);
+  /* Scanning line grid effect */
+  background-image: 
+    linear-gradient(rgba(125, 211, 252, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125, 211, 252, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* --- THE ARC REACTOR --- */
+.core-container {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.reactor-core img {
+  width: 480px;
+  height: 480px;
+  animation: slowSpin 60s linear infinite, corePulse 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 45px var(--accent-glow));
+}
+
+.glow-sphere {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(125,211,252,0.15) 0%, transparent 70%);
+  filter: blur(20px);
+  animation: corePulse 4s ease-in-out infinite alternate;
+}
+
+/* --- THE VIEWPORT --- */
+.hud-interface {
+  position: relative;
+  height: calc(100vh - 120px);
+  display: grid;
+  grid-template-columns: 350px 1fr 450px;
+  gap: 2rem;
+  padding: 2rem;
+  z-index: 10;
+}
+
+/* --- HUD GLASS PANELS --- */
+.glass-panel {
+  background: var(--glass);
+  backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid var(--border-neon);
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0,0,0, 0.8), inset 0 0 20px rgba(125, 211, 252, 0.05);
+  animation: hudIgnite 1s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.left-panel, .right-panel {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.left-panel::-webkit-scrollbar, .right-panel::-webkit-scrollbar {
+  display: none;
+}
+
+.panel-header {
+  border-bottom: 1px solid var(--border-neon);
+  padding-bottom: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.neon-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 4px;
+  color: var(--accent);
+  text-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* STATUS STRIP */
+.status-strip {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.status-tile {
+  background: rgba(0,0,0,0.4);
+  border-left: 3px solid var(--accent);
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.status-label {
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.status-value {
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* OUTPUT TERMINALS */
+.hologram-card {
+  margin-bottom: 1.5rem;
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(125, 211, 252, 0.15);
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.result-title {
+  color: var(--accent);
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  border-bottom: 1px dashed rgba(125,211,252,0.3);
+  padding-bottom: 0.3rem;
+}
+
+pre {
+  color: var(--text);
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.5;
+  text-shadow: 0 0 4px rgba(238,243,255,0.4);
+}
+
+/* --- THE COMMAND DOCK --- */
+.command-dock {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(80vw, 900px);
+  padding: 1.2rem 2rem;
+  z-index: 20;
+}
+
+.hud-form {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.input-wrapper {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  background: rgba(0,0,0,0.6);
+  border-radius: 4px;
+  padding: 0 1rem;
+  border: 1px solid var(--accent);
+  box-shadow: 0 0 15px rgba(125, 211, 252, 0.15);
+}
+
+.prompt-arrow {
+  color: var(--accent);
+  font-size: 1.2rem;
+  margin-right: 0.8rem;
+  animation: blink 1.5s infinite;
+}
+
+input[type="text"] {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.1rem;
+  padding: 1.2rem 0;
+  outline: none;
+}
+
+input::placeholder {
+  color: rgba(100, 129, 174, 0.5);
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.cyber-btn {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 1rem 1.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+
+.analyze-btn {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  box-shadow: inset 0 0 10px rgba(125,211,252,0.1);
+}
+.analyze-btn:hover { background: rgba(125,211,252,0.1); box-shadow: 0 0 15px var(--accent-glow); }
+
+.run-btn {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+.run-btn:hover { background: #fff; box-shadow: 0 0 30px #fff; }
+
+/* --- ANIMATIONS --- */
+@keyframes slowSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes corePulse {
+  0% { transform: scale(1); filter: drop-shadow(0 0 35px var(--accent-glow)); }
+  50% { transform: scale(1.02); filter: drop-shadow(0 0 65px var(--accent)); }
+  100% { transform: scale(1); filter: drop-shadow(0 0 35px var(--accent-glow)); }
+}
+
+@keyframes hudIgnite {
+  0% { opacity: 0; transform: translateY(20px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* App.js overrides for execution output color */
+#executionOutput {
+  color: var(--success);
+}
+#safetyOutput {
+  color: #e2e8f0;
+}

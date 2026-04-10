@@ -1,0 +1,934 @@
+[
+  {
+    "id": "cc47f8f4-4bb5-497e-a819-9347a7123ecc",
+    "instruction": "install python and install requirements",
+    "shell": "bash",
+    "profile": "balanced",
+    "status": "executed",
+    "created_at": "2026-04-09T15:56:04.784640+00:00",
+    "updated_at": "2026-04-09T15:56:04.793264+00:00",
+    "summary": "System Setup Automation is ready for review.",
+    "commands": [
+      "sudo apt-get update && sudo apt-get install -y python3 python3-venv python3-pip",
+      "./.venv/bin/python -m pip install -r requirements.txt"
+    ],
+    "steps": [
+      {
+        "index": 0,
+        "description": "Install Python",
+        "command": "sudo apt-get update && sudo apt-get install -y python3 python3-venv python3-pip",
+        "shell": "bash",
+        "risk_level": "medium",
+        "requires_review": true,
+        "approved": true,
+        "notes": [
+          "Choose the native package manager for the current platform."
+        ]
+      },
+      {
+        "index": 1,
+        "description": "Install project dependencies",
+        "command": "./.venv/bin/python -m pip install -r requirements.txt",
+        "shell": "bash",
+        "risk_level": "high",
+        "requires_review": true,
+        "approved": true,
+        "notes": []
+      }
+    ],
+    "analysis": {
+      "translation": {
+        "original_text": "install python and install requirements",
+        "normalized_text": "install python and install requirements",
+        "shell": "bash",
+        "actions": [
+          {
+            "description": "No direct translation available",
+            "commands": {
+              "powershell": "Write-Output \"No rule matched: install python and install requirements\"",
+              "bash": "echo \"No rule matched: install python and install requirements\""
+            },
+            "risk_tags": []
+          }
+        ],
+        "confidence": 0.77,
+        "notes": [
+          "Could not translate fragment: \"install python and install requirements\""
+        ]
+      },
+      "safety": {
+        "safe": false,
+        "requires_confirmation": true,
+        "blocked": false,
+        "issues": [
+          {
+            "level": "high",
+            "reason": "Command targets a sensitive system path.",
+            "command_index": 1,
+            "command": "./.venv/bin/python -m pip install -r requirements.txt"
+          },
+          {
+            "level": "medium",
+            "reason": "Automation plan requires review before execution.",
+            "command_index": 0,
+            "command": "System Setup Automation"
+          }
+        ],
+        "summary": "System Setup Automation is ready for review."
+      },
+      "automation": {
+        "category": "system_setup",
+        "title": "System Setup Automation",
+        "summary": "Plan to install or prepare Python and the local project environment automatically.",
+        "steps": [
+          {
+            "description": "Install Python",
+            "commands": {
+              "powershell": "winget install -e --id Python.Python.3",
+              "bash": "sudo apt-get update && sudo apt-get install -y python3 python3-venv python3-pip"
+            },
+            "notes": [
+              "Choose the native package manager for the current platform."
+            ]
+          },
+          {
+            "description": "Install project dependencies",
+            "commands": {
+              "powershell": ".\\.venv\\Scripts\\python -m pip install -r requirements.txt",
+              "bash": "./.venv/bin/python -m pip install -r requirements.txt"
+            },
+            "notes": []
+          }
+        ],
+        "requires_browser": false,
+        "requires_admin": false,
+        "requires_confirmation": true,
+        "confidence": 0.89,
+        "notes": [
+          "This plan is intended for local machine bootstrap and dependency installation."
+        ]
+      }
+    },
+    "reason": "System Setup Automation is ready for review.",
+    "dry_run": true,
+    "confirm_risky": false
+  },
+  {
+    "id": "469f77dd-ecab-4dda-a8db-9e73381ce559",
+    "instruction": "install python and install requirements",
+    "shell": "bash",
+    "profile": "balanced",
+    "status": "executed",
+    "created_at": "2026-04-09T15:56:27.473802+00:00",
+    "updated_at": "2026-04-09T15:56:27.483494+00:00",
+    "summary": "System Setup Automation is ready for review.",
+    "commands": [
+      "sudo apt-get update && sudo apt-get install -y python3 python3-venv python3-pip",
+      "./.venv/bin/python -m pip install -r requirements.txt"
+    ],
+    "steps": [
+      {
+        "index": 0,
+        "description": "Install Python",
+        "command": "sudo apt-get update && sudo apt-get install -y python3 python3-venv python3-pip",
+        "shell": "bash",
+        "risk_level": "medium",
+        "requires_review": true,
+        "approved": true,
+        "notes": [
+          "Choose the native package manager for the current platform."
+        ]
+      },
+      {
+        "index": 1,
+        "description": "Install project dependencies",
+        "command": "./.venv/bin/python -m pip install -r requirements.txt",
+        "shell": "bash",
+        "risk_level": "high",
+        "requires_review": true,
+        "approved": true,
+        "notes": []
+      }
+    ],
+    "analysis": {
+      "translation": {
+        "original_text": "install python and install requirements",
+        "normalized_text": "install python and install requirements",
+        "shell": "bash",
+        "actions": [
+          {
+            "description": "No direct translation available",
+            "commands": {
+              "powershell": "Write-Output \"No rule matched: install python and install requirements\"",
+              "bash": "echo \"No rule matched: install python and install requirements\""
+            },
+            "risk_tags": []
+          }
+        ],
+        "confidence": 0.77,
+        "notes": [
+          "Could not translate fragment: \"install python and install requirements\""
+        ]
+      },
+      "safety": {
+        "safe": false,
+        "requires_confirmation": true,
+        "blocked": false,
+        "issues": [
+          {
+            "level": "high",
+            "reason": "Command targets a sensitive system path.",
+            "command_index": 1,
+            "command": "./.venv/bin/python -m pip install -r requirements.txt"
+          },
+          {
+            "level": "medium",
+            "reason": "Automation plan requires review before execution.",
+            "command_index": 0,
+            "command": "System Setup Automation"
+          }
+        ],
+        "summary": "System Setup Automation is ready for review."
+      },
+      "automation": {
+        "category": "system_setup",
+        "title": "System Setup Automation",
+        "summary": "Plan to install or prepare Python and the local project environment automatically.",
+        "steps": [
+          {
+            "description": "Install Python",
+            "commands": {
+              "powershell": "winget install -e --id Python.Python.3",
+              "bash": "sudo apt-get update && sudo apt-get install -y python3 python3-venv python3-pip"
+            },
+            "notes": [
+              "Choose the native package manager for the current platform."
+            ]
+          },
+          {
+            "description": "Install project dependencies",
+            "commands": {
+              "powershell": ".\\.venv\\Scripts\\python -m pip install -r requirements.txt",
+              "bash": "./.venv/bin/python -m pip install -r requirements.txt"
+            },
+            "notes": []
+          }
+        ],
+        "requires_browser": false,
+        "requires_admin": false,
+        "requires_confirmation": true,
+        "confidence": 0.89,
+        "notes": [
+          "This plan is intended for local machine bootstrap and dependency installation."
+        ]
+      }
+    },
+    "reason": "System Setup Automation is ready for review.",
+    "dry_run": true,
+    "confirm_risky": false
+  },
+  {
+    "id": "0889ecce-4628-4331-9679-cec654917f0b",
+    "instruction": "install python and install requirements",
+    "shell": "bash",
+    "profile": "balanced",
+    "status": "executed",
+    "created_at": "2026-04-09T16:00:28.220175+00:00",
+    "updated_at": "2026-04-09T16:00:28.229591+00:00",
+    "summary": "System Setup Automation is ready for review.",
+    "commands": [
+      "sudo apt-get update && sudo apt-get install -y python3 python3-venv python3-pip",
+      "./.venv/bin/python -m pip install -r requirements.txt"
+    ],
+    "steps": [
+      {
+        "index": 0,
+        "description": "Install Python",
+        "command": "sudo apt-get update && sudo apt-get install -y python3 python3-venv python3-pip",
+        "shell": "bash",
+        "risk_level": "medium",
+        "requires_review": true,
+        "approved": true,
+        "notes": [
+          "Choose the native package manager for the current platform."
+        ]
+      },
+      {
+        "index": 1,
+        "description": "Install project dependencies",
+        "command": "./.venv/bin/python -m pip install -r requirements.txt",
+        "shell": "bash",
+        "risk_level": "high",
+        "requires_review": true,
+        "approved": true,
+        "notes": []
+      }
+    ],
+    "analysis": {
+      "translation": {
+        "original_text": "install python and install requirements",
+        "normalized_text": "install python and install requirements",
+        "shell": "bash",
+        "actions": [
+          {
+            "description": "No direct translation available",
+            "commands": {
+              "powershell": "Write-Output \"No rule matched: install python and install requirements\"",
+              "bash": "echo \"No rule matched: install python and install requirements\""
+            },
+            "risk_tags": []
+          }
+        ],
+        "confidence": 0.77,
+        "notes": [
+          "Could not translate fragment: \"install python and install requirements\""
+        ]
+      },
+      "safety": {
+        "safe": false,
+        "requires_confirmation": true,
+        "blocked": false,
+        "issues": [
+          {
+            "level": "high",
+            "reason": "Command targets a sensitive system path.",
+            "command_index": 1,
+            "command": "./.venv/bin/python -m pip install -r requirements.txt"
+          },
+          {
+            "level": "medium",
+            "reason": "Automation plan requires review before execution.",
+            "command_index": 0,
+            "command": "System Setup Automation"
+          }
+        ],
+        "summary": "System Setup Automation is ready for review."
+      },
+      "automation": {
+        "category": "system_setup",
+        "title": "System Setup Automation",
+        "summary": "Plan to install or prepare Python and the local project environment automatically.",
+        "steps": [
+          {
+            "description": "Install Python",
+            "commands": {
+              "powershell": "winget install -e --id Python.Python.3",
+              "bash": "sudo apt-get update && sudo apt-get install -y python3 python3-venv python3-pip"
+            },
+            "notes": [
+              "Choose the native package manager for the current platform."
+            ]
+          },
+          {
+            "description": "Install project dependencies",
+            "commands": {
+              "powershell": ".\\.venv\\Scripts\\python -m pip install -r requirements.txt",
+              "bash": "./.venv/bin/python -m pip install -r requirements.txt"
+            },
+            "notes": []
+          }
+        ],
+        "requires_browser": false,
+        "requires_admin": false,
+        "requires_confirmation": true,
+        "confidence": 0.89,
+        "notes": [
+          "This plan is intended for local machine bootstrap and dependency installation."
+        ]
+      }
+    },
+    "reason": "System Setup Automation is ready for review.",
+    "dry_run": true,
+    "confirm_risky": false
+  },
+  {
+    "id": "48aa79d1-ddad-4148-a389-b24953568ec4",
+    "instruction": "install python and install requirements",
+    "shell": "bash",
+    "profile": "balanced",
+    "status": "executed",
+    "created_at": "2026-04-09T17:14:08.663473+00:00",
+    "updated_at": "2026-04-09T17:14:08.680358+00:00",
+    "summary": "System Setup Automation is ready for review.",
+    "commands": [
+      "sudo apt-get update && sudo apt-get install -y python3 python3-venv python3-pip",
+      "./.venv/bin/python -m pip install -r requirements.txt"
+    ],
+    "steps": [
+      {
+        "index": 0,
+        "description": "Install Python",
+        "command": "sudo apt-get update && sudo apt-get install -y python3 python3-venv python3-pip",
+        "shell": "bash",
+        "risk_level": "medium",
+        "requires_review": true,
+        "approved": true,
+        "notes": [
+          "Choose the native package manager for the current platform."
+        ]
+      },
+      {
+        "index": 1,
+        "description": "Install project dependencies",
+        "command": "./.venv/bin/python -m pip install -r requirements.txt",
+        "shell": "bash",
+        "risk_level": "high",
+        "requires_review": true,
+        "approved": true,
+        "notes": []
+      }
+    ],
+    "analysis": {
+      "translation": {
+        "original_text": "install python and install requirements",
+        "normalized_text": "install python and install requirements",
+        "shell": "bash",
+        "actions": [
+          {
+            "description": "No direct translation available",
+            "commands": {
+              "powershell": "Write-Output \"No rule matched: install python and install requirements\"",
+              "bash": "echo \"No rule matched: install python and install requirements\""
+            },
+            "risk_tags": []
+          }
+        ],
+        "confidence": 0.77,
+        "notes": [
+          "Could not translate fragment: \"install python and install requirements\""
+        ]
+      },
+      "safety": {
+        "safe": false,
+        "requires_confirmation": true,
+        "blocked": false,
+        "issues": [
+          {
+            "level": "high",
+            "reason": "Command targets a sensitive system path.",
+            "command_index": 1,
+            "command": "./.venv/bin/python -m pip install -r requirements.txt"
+          },
+          {
+            "level": "medium",
+            "reason": "Automation plan requires review before execution.",
+            "command_index": 0,
+            "command": "System Setup Automation"
+          }
+        ],
+        "summary": "System Setup Automation is ready for review."
+      },
+      "automation": {
+        "category": "system_setup",
+        "title": "System Setup Automation",
+        "summary": "Plan to install or prepare Python and the local project environment automatically.",
+        "steps": [
+          {
+            "description": "Install Python",
+            "commands": {
+              "powershell": "winget install -e --id Python.Python.3",
+              "bash": "sudo apt-get update && sudo apt-get install -y python3 python3-venv python3-pip"
+            },
+            "notes": [
+              "Choose the native package manager for the current platform."
+            ]
+          },
+          {
+            "description": "Install project dependencies",
+            "commands": {
+              "powershell": ".\\.venv\\Scripts\\python -m pip install -r requirements.txt",
+              "bash": "./.venv/bin/python -m pip install -r requirements.txt"
+            },
+            "notes": []
+          }
+        ],
+        "requires_browser": false,
+        "requires_admin": false,
+        "requires_confirmation": true,
+        "confidence": 0.89,
+        "notes": [
+          "This plan is intended for local machine bootstrap and dependency installation."
+        ]
+      }
+    },
+    "reason": "System Setup Automation is ready for review.",
+    "dry_run": true,
+    "confirm_risky": false
+  },
+  {
+    "id": "0e6c6933-51d7-48ed-b7f1-fb731b7a8a46",
+    "instruction": "download python and install requirements",
+    "shell": "powershell",
+    "profile": "balanced",
+    "status": "pending",
+    "created_at": "2026-04-09T17:25:52.081653+00:00",
+    "updated_at": "2026-04-09T17:25:52.081660+00:00",
+    "summary": "System Setup Automation is ready for review.",
+    "commands": [
+      "winget install -e --id Python.Python.3",
+      ".\\.venv\\Scripts\\python -m pip install -r requirements.txt"
+    ],
+    "steps": [
+      {
+        "index": 0,
+        "description": "Install Python",
+        "command": "winget install -e --id Python.Python.3",
+        "shell": "powershell",
+        "risk_level": "medium",
+        "requires_review": true,
+        "approved": false,
+        "notes": [
+          "Choose the native package manager for the current platform."
+        ]
+      },
+      {
+        "index": 1,
+        "description": "Install project dependencies",
+        "command": ".\\.venv\\Scripts\\python -m pip install -r requirements.txt",
+        "shell": "powershell",
+        "risk_level": "medium",
+        "requires_review": true,
+        "approved": false,
+        "notes": []
+      }
+    ],
+    "analysis": {
+      "translation": {
+        "original_text": "download python and install requirements",
+        "normalized_text": "download python and install requirements",
+        "shell": "powershell",
+        "actions": [
+          {
+            "description": "No direct translation available",
+            "commands": {
+              "powershell": "Write-Output \"No rule matched: download python and install requirements\"",
+              "bash": "echo \"No rule matched: download python and install requirements\""
+            },
+            "risk_tags": []
+          }
+        ],
+        "confidence": 0.77,
+        "notes": [
+          "Could not translate fragment: \"download python and install requirements\""
+        ]
+      },
+      "safety": {
+        "safe": false,
+        "requires_confirmation": true,
+        "blocked": false,
+        "issues": [
+          {
+            "level": "medium",
+            "reason": "Automation plan requires review before execution.",
+            "command_index": 0,
+            "command": "System Setup Automation"
+          }
+        ],
+        "summary": "System Setup Automation is ready for review."
+      },
+      "automation": {
+        "category": "system_setup",
+        "title": "System Setup Automation",
+        "summary": "Plan to install or prepare Python and the local project environment automatically.",
+        "steps": [
+          {
+            "description": "Install Python",
+            "commands": {
+              "powershell": "winget install -e --id Python.Python.3",
+              "bash": "sudo apt-get update && sudo apt-get install -y python3 python3-venv python3-pip"
+            },
+            "notes": [
+              "Choose the native package manager for the current platform."
+            ]
+          },
+          {
+            "description": "Install project dependencies",
+            "commands": {
+              "powershell": ".\\.venv\\Scripts\\python -m pip install -r requirements.txt",
+              "bash": "./.venv/bin/python -m pip install -r requirements.txt"
+            },
+            "notes": []
+          }
+        ],
+        "requires_browser": false,
+        "requires_admin": true,
+        "requires_confirmation": true,
+        "confidence": 0.89,
+        "notes": [
+          "This plan is intended for local machine bootstrap and dependency installation."
+        ]
+      }
+    },
+    "reason": "System Setup Automation is ready for review.",
+    "dry_run": true,
+    "confirm_risky": false
+  },
+  {
+    "id": "c3ccb99c-ba41-4c0d-be2f-6d2cbd5e786b",
+    "instruction": "open whatsapp and send a message to John saying hello",
+    "shell": "powershell",
+    "profile": "balanced",
+    "status": "pending",
+    "created_at": "2026-04-09T17:26:02.348120+00:00",
+    "updated_at": "2026-04-09T17:26:02.348127+00:00",
+    "summary": "Browser Automation is ready for review.",
+    "commands": [
+      "Start-Process https://web.whatsapp.com"
+    ],
+    "steps": [
+      {
+        "index": 0,
+        "description": "Open WhatsApp Web in a browser",
+        "command": "Start-Process https://web.whatsapp.com",
+        "shell": "powershell",
+        "risk_level": "medium",
+        "requires_review": true,
+        "approved": false,
+        "notes": [
+          "Login may be required before a message can be sent."
+        ]
+      },
+      {
+        "index": 1,
+        "description": "Open chat for John",
+        "command": "",
+        "shell": "powershell",
+        "risk_level": "medium",
+        "requires_review": true,
+        "approved": false,
+        "notes": [
+          "Browser automation runner required for this step."
+        ]
+      },
+      {
+        "index": 2,
+        "description": "Send message: to John saying hello",
+        "command": "",
+        "shell": "powershell",
+        "risk_level": "medium",
+        "requires_review": true,
+        "approved": false,
+        "notes": [
+          "This step is intentionally separated from shell execution."
+        ]
+      }
+    ],
+    "analysis": {
+      "translation": {
+        "original_text": "open whatsapp and send a message to John saying hello",
+        "normalized_text": "open whatsapp and send a message to john saying hello",
+        "shell": "powershell",
+        "actions": [
+          {
+            "description": "No direct translation available",
+            "commands": {
+              "powershell": "Write-Output \"No rule matched: open whatsapp and send a message to john saying hello\"",
+              "bash": "echo \"No rule matched: open whatsapp and send a message to john saying hello\""
+            },
+            "risk_tags": []
+          }
+        ],
+        "confidence": 0.77,
+        "notes": [
+          "Could not translate fragment: \"open whatsapp and send a message to john saying hello\""
+        ]
+      },
+      "safety": {
+        "safe": false,
+        "requires_confirmation": true,
+        "blocked": false,
+        "issues": [
+          {
+            "level": "medium",
+            "reason": "Automation plan requires review before execution.",
+            "command_index": 0,
+            "command": "Browser Automation"
+          }
+        ],
+        "summary": "Browser Automation is ready for review."
+      },
+      "automation": {
+        "category": "browser_automation",
+        "title": "Browser Automation",
+        "summary": "Plan to automate a browser flow for John with the message 'to John saying hello'.",
+        "steps": [
+          {
+            "description": "Open WhatsApp Web in a browser",
+            "commands": {
+              "powershell": "Start-Process https://web.whatsapp.com",
+              "bash": "xdg-open https://web.whatsapp.com || open https://web.whatsapp.com"
+            },
+            "notes": [
+              "Login may be required before a message can be sent."
+            ]
+          },
+          {
+            "description": "Open chat for John",
+            "commands": {},
+            "notes": [
+              "Browser automation runner required for this step."
+            ]
+          },
+          {
+            "description": "Send message: to John saying hello",
+            "commands": {},
+            "notes": [
+              "This step is intentionally separated from shell execution."
+            ]
+          }
+        ],
+        "requires_browser": true,
+        "requires_admin": false,
+        "requires_confirmation": true,
+        "confidence": 0.84,
+        "notes": [
+          "Use a browser automation runner such as Playwright for the message-sending steps."
+        ]
+      }
+    },
+    "reason": "Browser Automation is ready for review.",
+    "dry_run": true,
+    "confirm_risky": false
+  },
+  {
+    "id": "37dde9b4-564c-461c-ae1a-67f154407ac5",
+    "instruction": "open whatsapp and send a message to John saying hello",
+    "shell": "powershell",
+    "profile": "balanced",
+    "status": "pending",
+    "created_at": "2026-04-09T17:26:03.155263+00:00",
+    "updated_at": "2026-04-09T17:26:03.155270+00:00",
+    "summary": "Browser Automation is ready for review.",
+    "commands": [
+      "Start-Process https://web.whatsapp.com"
+    ],
+    "steps": [
+      {
+        "index": 0,
+        "description": "Open WhatsApp Web in a browser",
+        "command": "Start-Process https://web.whatsapp.com",
+        "shell": "powershell",
+        "risk_level": "medium",
+        "requires_review": true,
+        "approved": false,
+        "notes": [
+          "Login may be required before a message can be sent."
+        ]
+      },
+      {
+        "index": 1,
+        "description": "Open chat for John",
+        "command": "",
+        "shell": "powershell",
+        "risk_level": "medium",
+        "requires_review": true,
+        "approved": false,
+        "notes": [
+          "Browser automation runner required for this step."
+        ]
+      },
+      {
+        "index": 2,
+        "description": "Send message: to John saying hello",
+        "command": "",
+        "shell": "powershell",
+        "risk_level": "medium",
+        "requires_review": true,
+        "approved": false,
+        "notes": [
+          "This step is intentionally separated from shell execution."
+        ]
+      }
+    ],
+    "analysis": {
+      "translation": {
+        "original_text": "open whatsapp and send a message to John saying hello",
+        "normalized_text": "open whatsapp and send a message to john saying hello",
+        "shell": "powershell",
+        "actions": [
+          {
+            "description": "No direct translation available",
+            "commands": {
+              "powershell": "Write-Output \"No rule matched: open whatsapp and send a message to john saying hello\"",
+              "bash": "echo \"No rule matched: open whatsapp and send a message to john saying hello\""
+            },
+            "risk_tags": []
+          }
+        ],
+        "confidence": 0.77,
+        "notes": [
+          "Could not translate fragment: \"open whatsapp and send a message to john saying hello\""
+        ]
+      },
+      "safety": {
+        "safe": false,
+        "requires_confirmation": true,
+        "blocked": false,
+        "issues": [
+          {
+            "level": "medium",
+            "reason": "Automation plan requires review before execution.",
+            "command_index": 0,
+            "command": "Browser Automation"
+          }
+        ],
+        "summary": "Browser Automation is ready for review."
+      },
+      "automation": {
+        "category": "browser_automation",
+        "title": "Browser Automation",
+        "summary": "Plan to automate a browser flow for John with the message 'to John saying hello'.",
+        "steps": [
+          {
+            "description": "Open WhatsApp Web in a browser",
+            "commands": {
+              "powershell": "Start-Process https://web.whatsapp.com",
+              "bash": "xdg-open https://web.whatsapp.com || open https://web.whatsapp.com"
+            },
+            "notes": [
+              "Login may be required before a message can be sent."
+            ]
+          },
+          {
+            "description": "Open chat for John",
+            "commands": {},
+            "notes": [
+              "Browser automation runner required for this step."
+            ]
+          },
+          {
+            "description": "Send message: to John saying hello",
+            "commands": {},
+            "notes": [
+              "This step is intentionally separated from shell execution."
+            ]
+          }
+        ],
+        "requires_browser": true,
+        "requires_admin": false,
+        "requires_confirmation": true,
+        "confidence": 0.84,
+        "notes": [
+          "Use a browser automation runner such as Playwright for the message-sending steps."
+        ]
+      }
+    },
+    "reason": "Browser Automation is ready for review.",
+    "dry_run": true,
+    "confirm_risky": false
+  },
+  {
+    "id": "4f1ef79d-639f-4bb4-a54b-f3b71dea4754",
+    "instruction": "install python and install requirements",
+    "shell": "bash",
+    "profile": "balanced",
+    "status": "executed",
+    "created_at": "2026-04-10T00:53:31.803380+00:00",
+    "updated_at": "2026-04-10T00:53:31.947403+00:00",
+    "summary": "System Setup Automation is ready for review.",
+    "commands": [
+      "sudo apt-get update && sudo apt-get install -y python3 python3-venv python3-pip",
+      "./.venv/bin/python -m pip install -r requirements.txt"
+    ],
+    "steps": [
+      {
+        "index": 0,
+        "description": "Install Python",
+        "command": "sudo apt-get update && sudo apt-get install -y python3 python3-venv python3-pip",
+        "shell": "bash",
+        "risk_level": "medium",
+        "requires_review": true,
+        "approved": true,
+        "notes": [
+          "Choose the native package manager for the current platform."
+        ]
+      },
+      {
+        "index": 1,
+        "description": "Install project dependencies",
+        "command": "./.venv/bin/python -m pip install -r requirements.txt",
+        "shell": "bash",
+        "risk_level": "high",
+        "requires_review": true,
+        "approved": true,
+        "notes": []
+      }
+    ],
+    "analysis": {
+      "translation": {
+        "original_text": "install python and install requirements",
+        "normalized_text": "install python and install requirements",
+        "shell": "bash",
+        "actions": [
+          {
+            "description": "No direct translation available",
+            "commands": {
+              "powershell": "Write-Output \"No rule matched: install python and install requirements\"",
+              "bash": "echo \"No rule matched: install python and install requirements\""
+            },
+            "risk_tags": []
+          }
+        ],
+        "confidence": 0.77,
+        "notes": [
+          "Could not translate fragment: \"install python and install requirements\""
+        ]
+      },
+      "safety": {
+        "safe": false,
+        "requires_confirmation": true,
+        "blocked": false,
+        "issues": [
+          {
+            "level": "high",
+            "reason": "Command targets a sensitive system path.",
+            "command_index": 1,
+            "command": "./.venv/bin/python -m pip install -r requirements.txt"
+          },
+          {
+            "level": "medium",
+            "reason": "Automation plan requires review before execution.",
+            "command_index": 0,
+            "command": "System Setup Automation"
+          }
+        ],
+        "summary": "System Setup Automation is ready for review."
+      },
+      "automation": {
+        "category": "system_setup",
+        "title": "System Setup Automation",
+        "summary": "Plan to install or prepare Python and the local project environment automatically.",
+        "steps": [
+          {
+            "description": "Install Python",
+            "commands": {
+              "powershell": "winget install -e --id Python.Python.3",
+              "bash": "sudo apt-get update && sudo apt-get install -y python3 python3-venv python3-pip"
+            },
+            "notes": [
+              "Choose the native package manager for the current platform."
+            ]
+          },
+          {
+            "description": "Install project dependencies",
+            "commands": {
+              "powershell": ".\\.venv\\Scripts\\python -m pip install -r requirements.txt",
+              "bash": "./.venv/bin/python -m pip install -r requirements.txt"
+            },
+            "notes": []
+          }
+        ],
+        "requires_browser": false,
+        "requires_admin": false,
+        "requires_confirmation": true,
+        "confidence": 0.89,
+        "notes": [
+          "This plan is intended for local machine bootstrap and dependency installation."
+        ]
+      }
+    },
+    "reason": "System Setup Automation is ready for review.",
+    "dry_run": true,
+    "confirm_risky": false
+  }
+]
